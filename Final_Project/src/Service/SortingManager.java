@@ -8,17 +8,11 @@ import java.util.Scanner;
 import Items.Item;
 
 public class SortingManager <T extends Item>{
-	public SortingManager(ArrayList<T> targetList,Scanner scan) {
-		this.list = targetList;
-		this.scan = scan;
-	}
-	private ArrayList<T> list;
-	private Scanner scan;
 	
-	public void mySort(int sortOption) {
+	public void mySort(ArrayList<T> target,int sortOption) {
 		switch (sortOption) {
 		case 1://by name
-			Collections.sort(list, new Comparator<T>() {
+			Collections.sort(target, new Comparator<T>() {
 				@Override
 				public int compare(T item1, T item2) {
 					return item1.getName().compareTo(item2.getName());
@@ -26,7 +20,7 @@ public class SortingManager <T extends Item>{
 			});
 			break;
 		case 2://by time
-			Collections.sort(list, new Comparator<T>() {
+			Collections.sort(target, new Comparator<T>() {
 				@Override
 				public int compare(T item1, T item2) {
 					if (item1.getTime() == item2.getTime())
@@ -39,7 +33,7 @@ public class SortingManager <T extends Item>{
 			});
 			break;
 		case 3://by grade
-			Collections.sort(list, new Comparator<T>() {
+			Collections.sort(target, new Comparator<T>() {
 				@Override
 				public int compare(T item1, T item2) {
 					if (item1.getGrade() == item2.getGrade())
@@ -53,28 +47,7 @@ public class SortingManager <T extends Item>{
 			break;	
 		}
 	}
-	
-	public void categorySort() {
-		boolean done = false;
-		int input = 0;
-		System.out.println("****Category sort Menu****");
-		Item.Category selectedCategory = null;
-		// GUI option select
-		// case - switch : which button clicked? => selectedCategory value
-
-		Collections.sort(list, new Comparator<T>() {
-			@Override
-			public int compare(T item1, T item2) {
-				if (item1.hasCategory(selectedCategory) == item2.hasCategory(selectedCategory))
-					return 0;
-				else if (item1.hasCategory(selectedCategory) && !item2.hasCategory(selectedCategory))
-					return 1;
-				else
-					return -1;
-			}
-		});
-	
-	}	
+		
 	//예시 버튼 이벤트 
 	//@Override
 	public void actionPerformed(ActionEvent e) {
