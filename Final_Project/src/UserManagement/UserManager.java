@@ -14,14 +14,13 @@ public class UserManager {
 		this.scan = scan;
 	}
 	
-	public String login(String id, String pw) {
+	public User login(String id, String pw) {
 		User user = find(id);
-		
 		if(user == null || !user.pw.equals(pw)) {
 	    	System.out.println("아이디 또는 비밀번호가 일치하지 않습니다.");
 	    	return null;
 		}
-		return user.userId;
+		return user;
 	}
 	
 	public User withDrawal(User user) {
